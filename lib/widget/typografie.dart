@@ -30,8 +30,8 @@ class Typografie {
       "$text",
       style: TextStyle(
         color: color,
-        fontSize: 35.0,
-        fontWeight: FontWeight.w700,
+        fontSize: 19.0,
+        fontWeight: FontWeight.w500,
         fontFamily: "NotoSans",
       ),
     );

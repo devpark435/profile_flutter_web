@@ -13,27 +13,50 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   final _controller = PageController();
+  int _currentPage = 0;
+  final List<Color> _bgColors = [
+    Colors.grey.shade800,
+    Colors.white,
+    Colors.blue
+  ];
+  final List<Color> _textColors = [Colors.white, Colors.black, Colors.amber];
+  List<String> _titles = ["Profile", "Introduce", "Doing"];
+
+  @override
+  void initState() {
+    super.initState();
+    _controller.addListener(() {
+      setState(() {
+        _currentPage = _controller.page!.round();
+      });
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
           centerTitle: false,
           title: Padding(
-            padding: const EdgeInsets.only(left: 40),
-            child: Typografie().displayMedium("Profile", Colors.white),
+            padding: const EdgeInsets.only(left: 10),
+            child: Typografie().displayMedium(
+                _titles[_currentPage], _textColors[_currentPage]),
           ),
           actions: [
             TextButton(
                 onPressed: () {},
-                child: Typografie().displaySmall("text", Colors.white)),
+                child: Typografie()
+                    .displaySmall("text", _textColors[_currentPage])),
             TextButton(
                 onPressed: () {},
-                child: Typografie().displaySmall("text", Colors.white)),
+                child: Typografie()
+                    .displaySmall("text", _textColors[_currentPage])),
             TextButton(
                 onPressed: () {},
-                child: Typografie().displaySmall("text", Colors.white))
+                child: Typografie()
+                    .displaySmall("text", _textColors[_currentPage]))
           ],
-          backgroundColor: Colors.grey.shade800,
+          backgroundColor: _bgColors[_currentPage],
           elevation: 0,
         ),
         body: PageView(

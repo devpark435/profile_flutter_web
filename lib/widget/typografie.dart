@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 
 class Typografie {
   Widget displayLarge(String? text, Color? color) {
-    return Text(
+    return AutoSizeText(
       "$text",
       style: TextStyle(
         color: color,
@@ -10,23 +11,27 @@ class Typografie {
         fontWeight: FontWeight.w700,
         fontFamily: "NotoSans",
       ),
+      minFontSize: 35,
+      maxLines: 1,
     );
   }
 
   Widget displayMedium(String? text, Color? color) {
-    return Text(
+    return AutoSizeText(
       "$text",
       style: TextStyle(
         color: color,
-        fontSize: 45.0,
+        fontSize: 35.0,
         fontWeight: FontWeight.w700,
         fontFamily: "NotoSans",
       ),
+      minFontSize: 15,
+      maxLines: 1,
     );
   }
 
   Widget displaySmall(String? text, Color? color) {
-    return Text(
+    return AutoSizeText(
       "$text",
       style: TextStyle(
         color: color,
@@ -34,6 +39,8 @@ class Typografie {
         fontWeight: FontWeight.w500,
         fontFamily: "NotoSans",
       ),
+      minFontSize: 9,
+      maxLines: 1,
     );
   }
 

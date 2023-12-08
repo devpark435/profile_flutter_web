@@ -1,78 +1,199 @@
 import 'package:flutter/material.dart';
 import 'package:profile_flutter_web/widget/typografie.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-        // margin: EdgeInsets.only(bottom: 10),
-        decoration: BoxDecoration(
-          color: Colors.grey.shade800,
-        ),
-        child: Column(
+    return SizedBox(
+        width: MediaQuery.of(context).size.width,
+        child: Stack(
           children: [
-            Expanded(
-              flex: 10,
-              child: Row(
-                children: const [
-                  Expanded(flex: 1, child: ProfileText()),
-                  Expanded(flex: 1, child: ProfileImage())
+            Center(
+              child: Column(
+                children: [
+                  Expanded(
+                    flex: 5,
+                    child: Container(
+                      width: MediaQuery.of(context).size.width,
+                      color: Colors.grey.shade800,
+                      alignment: Alignment.center,
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 10),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Typografie().displayLarge("박현렬", Colors.white),
+                            Typografie().displayMedium("Profile", Colors.white),
+                            Typografie().displaySmall(
+                                "Flutter Developer, Ios Developer",
+                                Colors.white),
+                            Typografie().displayMedium("-", Colors.white),
+                            Typografie().displaySmall(
+                                "Flutter 개발에 대한 열정과 경험을 쌓아온 개발자로,",
+                                Colors.white.withOpacity(.8)),
+                            Typografie().displaySmall(
+                                "창의적이고 효율적인 솔루션을 찾는 것을 즐깁니다.",
+                                Colors.white.withOpacity(.8)),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                  Expanded(
+                      flex: 5,
+                      child: Center(
+                          child: SizedBox(
+                              width: MediaQuery.of(context).size.width * .8,
+                              child: const InfoScreen()))),
                 ],
               ),
             ),
-            Expanded(
-                flex: 1,
-                child: Center(
-                    child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Typografie().displaySmall("아래로 스크롤 하세요!", Colors.white),
-                    const Icon(
-                      Icons.arrow_downward_outlined,
-                      color: Colors.white,
-                      size: 23,
-                    )
-                  ],
-                )))
+            Positioned(
+                bottom: 10,
+                child: Container(
+                  width: MediaQuery.of(context).size.width,
+                  alignment: Alignment.center,
+                  child: Container(
+                    width: MediaQuery.of(context).size.width / 2,
+                    decoration: BoxDecoration(
+                        color: Colors.grey.shade800.withOpacity(0.6),
+                        borderRadius: BorderRadius.circular(10)),
+                    child: Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Typografie().displaySmall("더 알아보기", Colors.white),
+                          const Icon(
+                            Icons.arrow_downward_outlined,
+                            color: Colors.white,
+                            size: 23,
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                ))
           ],
         ));
   }
 }
 
-class ProfileImage extends StatelessWidget {
-  const ProfileImage({super.key});
+class InfoScreen extends StatelessWidget {
+  const InfoScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration:
-          BoxDecoration(image: DecorationImage(image: NetworkImage(""))),
+    return LayoutBuilder(
+      builder: (BuildContext context, BoxConstraints constraints) {
+        var _width = constraints.maxWidth;
+        return _width >= 1000
+            ? Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 100),
+                child: Column(
+                  children: [
+                    Expanded(
+                      flex: 1,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Expanded(
+                              flex: 1,
+                              child: infoContainer(
+                                  const Icon(Icons.person), "이름", "박현렬")),
+                          Expanded(
+                              flex: 1,
+                              child: infoContainer(const Icon(Icons.date_range),
+                                  "생년월일", "98.10.31")),
+                          Expanded(
+                              flex: 1,
+                              child: infoContainer(
+                                  const Icon(Icons.location_on),
+                                  "주소지",
+                                  "서울시 중랑구")),
+                        ],
+                      ),
+                    ),
+                    Expanded(
+                      flex: 1,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Expanded(
+                              flex: 1,
+                              child: infoContainer(const Icon(Icons.call),
+                                  "연락처", "010-7687-0863")),
+                          Expanded(
+                              flex: 1,
+                              child: infoContainer(const Icon(Icons.mail),
+                                  "이메일", "devpark435@naver.com")),
+                          Expanded(
+                              flex: 1,
+                              child: infoContainer(const Icon(Icons.school),
+                                  "학력", "성공회대학교(소프트웨어공학, 컴퓨터공학)")),
+                        ],
+                      ),
+                    )
+                  ],
+                ),
+              )
+            : ListView(
+                children: [
+                  infoContainer(const Icon(Icons.person), "이름", "박현렬"),
+                  Divider(color: Colors.grey.shade800, thickness: 1),
+                  infoContainer(
+                      const Icon(Icons.date_range), "생년월일", "98.10.31"),
+                  Divider(color: Colors.grey.shade800, thickness: 1),
+                  infoContainer(
+                      const Icon(Icons.location_on), "주소지", "서울시 중랑구"),
+                  Divider(color: Colors.grey.shade800, thickness: 1),
+                  infoContainer(const Icon(Icons.call), "연락처", "010-7687-0863"),
+                  Divider(color: Colors.grey.shade800, thickness: 1),
+                  infoContainer(
+                      const Icon(Icons.mail), "이메일", "devpark435@naver.com"),
+                  Divider(color: Colors.grey.shade800, thickness: 1),
+                  infoContainer(
+                      const Icon(Icons.school), "학력", "성공회대학교(소프트웨어공학, 컴퓨터공학)"),
+                ],
+              );
+      },
     );
   }
 }
 
-class ProfileText extends StatelessWidget {
-  const ProfileText({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-        alignment: Alignment.centerLeft,
-        margin: const EdgeInsets.only(left: 40),
-        child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-          Container(
-            alignment: Alignment.centerLeft,
-            child: Typografie().displayLarge("Hi ~~~~~", Colors.white),
+Widget infoContainer(Icon icon, String text1, String text2) {
+  return Padding(
+    padding: const EdgeInsets.all(8.0),
+    child: Row(
+      children: [
+        Expanded(
+          child: Padding(
+            padding: const EdgeInsets.all(30.0),
+            child: FittedBox(fit: BoxFit.cover, child: icon),
           ),
-          const SizedBox(
-            height: 20,
+          flex: 1,
+        ),
+        Expanded(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 10),
+                child: Typografie().displayMedium(text1, Colors.grey.shade800),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 10),
+                child: Typografie().displaySmall(text2, Colors.grey.shade800),
+              ),
+            ],
           ),
-          Container(
-            alignment: Alignment.centerLeft,
-            child: Typografie().displayMedium("~~~~~", Colors.white),
-          )
-        ]));
-  }
+          flex: 2,
+        )
+      ],
+    ),
+  );
 }

@@ -18,25 +18,30 @@ class ProfileScreen extends StatelessWidget {
                     flex: 5,
                     child: Container(
                       width: MediaQuery.of(context).size.width,
-                      color: Colors.grey.shade800,
+                      color: const Color.fromARGB(255, 39, 55, 77),
                       alignment: Alignment.center,
                       child: Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 10),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Typografie().displayLarge("박현렬", Colors.white),
-                            Typografie().displayMedium("Profile", Colors.white),
+                            Typografie().displayLarge("박현렬",
+                                const Color.fromARGB(255, 221, 230, 237)),
+                            Typografie().displayMedium("Profile",
+                                const Color.fromARGB(255, 221, 230, 237)),
                             Typografie().displaySmall(
                                 "Flutter Developer, Ios Developer",
-                                Colors.white),
-                            Typografie().displayMedium("-", Colors.white),
+                                const Color.fromARGB(255, 221, 230, 237)),
+                            Typografie().displayMedium(
+                                "-", const Color.fromARGB(255, 221, 230, 237)),
                             Typografie().displaySmall(
                                 "Flutter 개발에 대한 열정과 경험을 쌓아온 개발자로,",
-                                Colors.white.withOpacity(.8)),
+                                const Color.fromARGB(255, 221, 230, 237)
+                                    .withOpacity(.8)),
                             Typografie().displaySmall(
                                 "창의적이고 효율적인 솔루션을 찾는 것을 즐깁니다.",
-                                Colors.white.withOpacity(.8)),
+                                const Color.fromARGB(255, 221, 230, 237)
+                                    .withOpacity(.8)),
                           ],
                         ),
                       ),
@@ -45,9 +50,12 @@ class ProfileScreen extends StatelessWidget {
                   Expanded(
                       flex: 5,
                       child: Center(
-                          child: SizedBox(
-                              width: MediaQuery.of(context).size.width * .8,
-                              child: const InfoScreen()))),
+                          child: Padding(
+                        padding: const EdgeInsets.only(bottom: 50.0),
+                        child: SizedBox(
+                            width: MediaQuery.of(context).size.width * .8,
+                            child: const InfoScreen()),
+                      ))),
                 ],
               ),
             ),
@@ -164,16 +172,15 @@ class InfoScreen extends StatelessWidget {
   }
 }
 
-Widget infoContainer(Icon icon, String text1, String text2) {
+Widget infoContainer(icon, String text1, String text2) {
   return Padding(
     padding: const EdgeInsets.all(8.0),
     child: Row(
       children: [
         Expanded(
           child: Padding(
-            padding: const EdgeInsets.all(30.0),
-            child: FittedBox(fit: BoxFit.cover, child: icon),
-          ),
+              padding: const EdgeInsets.all(30.0),
+              child: FittedBox(fit: BoxFit.cover, child: icon)),
           flex: 1,
         ),
         Expanded(

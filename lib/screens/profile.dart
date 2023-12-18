@@ -7,8 +7,8 @@ class ProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-        width: MediaQuery.of(context).size.width,
+    return Scaffold(
+      body: SafeArea(
         child: Stack(
           children: [
             Center(
@@ -50,43 +50,16 @@ class ProfileScreen extends StatelessWidget {
                   Expanded(
                       flex: 5,
                       child: Center(
-                          child: Padding(
-                        padding: const EdgeInsets.only(bottom: 50.0),
-                        child: SizedBox(
-                            width: MediaQuery.of(context).size.width * .8,
-                            child: const InfoScreen()),
-                      ))),
+                          child: SizedBox(
+                              width: MediaQuery.of(context).size.width * .8,
+                              child: const InfoScreen()))),
                 ],
               ),
             ),
-            Positioned(
-                bottom: 10,
-                child: Container(
-                  width: MediaQuery.of(context).size.width,
-                  alignment: Alignment.center,
-                  child: Container(
-                    width: MediaQuery.of(context).size.width / 2,
-                    decoration: BoxDecoration(
-                        color: Colors.grey.shade800.withOpacity(0.6),
-                        borderRadius: BorderRadius.circular(10)),
-                    child: Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Typografie().displaySmall("더 알아보기", Colors.white),
-                          const Icon(
-                            Icons.arrow_downward_outlined,
-                            color: Colors.white,
-                            size: 23,
-                          )
-                        ],
-                      ),
-                    ),
-                  ),
-                ))
           ],
-        ));
+        ),
+      ),
+    );
   }
 }
 
@@ -100,7 +73,8 @@ class InfoScreen extends StatelessWidget {
         var _width = constraints.maxWidth;
         return _width >= 1000
             ? Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 100),
+                padding:
+                    const EdgeInsets.only(right: 100, left: 100, bottom: 50),
                 child: Column(
                   children: [
                     Expanded(

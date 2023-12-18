@@ -11,7 +11,7 @@ class Typografie {
         fontWeight: FontWeight.w700,
         fontFamily: "NotoSans",
       ),
-      minFontSize: 35,
+      minFontSize: 25,
       maxLines: 1,
     );
   }
@@ -31,6 +31,48 @@ class Typografie {
   }
 
   Widget displaySmall(String? text, Color? color) {
+    return AutoSizeText(
+      "$text",
+      style: TextStyle(
+        color: color,
+        fontSize: 19.0,
+        fontWeight: FontWeight.w500,
+        fontFamily: "NotoSans",
+      ),
+      minFontSize: 9,
+      maxLines: 1,
+    );
+  }
+
+  Widget mobileLarge(String? text, Color? color) {
+    return AutoSizeText(
+      "$text",
+      style: TextStyle(
+        color: color,
+        fontSize: 30.0,
+        fontWeight: FontWeight.w700,
+        fontFamily: "NotoSans",
+      ),
+      minFontSize: 20,
+      maxLines: 1,
+    );
+  }
+
+  Widget mobileMedium(String? text, Color? color) {
+    return AutoSizeText(
+      "$text",
+      style: TextStyle(
+        color: color,
+        fontSize: 20.0,
+        fontWeight: FontWeight.w700,
+        fontFamily: "NotoSans",
+      ),
+      minFontSize: 15,
+      maxLines: 1,
+    );
+  }
+
+  Widget mobileSmall(String? text, Color? color) {
     return AutoSizeText(
       "$text",
       style: TextStyle(
